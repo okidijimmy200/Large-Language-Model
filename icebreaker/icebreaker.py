@@ -10,6 +10,7 @@ from typing import Tuple
 def ice_breaker(name: str) -> Tuple[PersonIntel, str]:
     print("langchain")
 
+    '''perform the linkedin lookuo'''
     linkedin_profile_url = lookup(name)
 
     summary_template = """

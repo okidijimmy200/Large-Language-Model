@@ -21,9 +21,11 @@ if __name__ == "__main__":
     texts = text_splitter.split_documents(document)
     print(len(texts))
 
+    # embeddings -- convert text into vectors
     embeddings = OpenAIEmbeddings(openai_api_key=os.environ.get("OPENAI_API_KEY"))
     doc_search = Pinecone.from_documents(texts, embeddings, index_name="blogs-index")
 
+    # VectorDBQA chain takes the prompt, embeds as vector, then plots it to vector db which db returns closest vectors
     qa = VectorDBQA.from_chain_type(
         llm=OpenAI(),
         chain_type="stuff",
